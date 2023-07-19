@@ -5,6 +5,7 @@ import keysRoutes from "./routes/keys.routes.js";
 
 
 const app = express();
+app.use(express.json())
 
 app.use(indexRoutes)
 app.use(keysRoutes)
