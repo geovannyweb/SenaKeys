@@ -34,11 +34,13 @@ function CrearUsuariosPage() {
 }/>
 <input type="text" name="last_name" placeholder="Apellido usuario" onChange={handleChange} value={values.last_name}/>
 <input type="number" name="dni" placeholder=" # docmuento" onChange={handleChange} value={values.dni}/>
-<select id="dni" name="dni" value={values.type_dni} onChange={handleChange}>
+
+<select id="dni" name="type_dni" value={values.type_dni} onChange={handleChange}>
   <option value="4">C.C</option>
   <option value="5">T.I</option>
   <option value="6">C.E</option>
 </select>
+
 <input type="mail" placeholder="example@mail.com"
 name="mail" onChange={handleChange} value={values.mail}/>
 
