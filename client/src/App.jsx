@@ -9,6 +9,7 @@ import SolicitarPrestamoPage from "./pages/SolicitarPrestamoPage";
 import HomePage from "./pages/HomePage";
 
 import Navbar from "./components/navbar";
+import UsersPage from "./pages/UsersPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/Crear-Usuarios" element={<CrearUsuariosPage/>} />
       <Route path="/Historial" element={<HistorialPage/>} />
       <Route path="/Solicitar-Prestamo" element={<SolicitarPrestamoPage/>} />
+      <Route path="/Usuarios" element={<UsersPage/>}/>
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
     </>

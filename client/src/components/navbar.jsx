@@ -12,6 +12,7 @@ function navbar() {
             <li><Link to='Llaves'>Llaves</Link></li>
             <li><Link to='Prestamos'>Prestamos</Link></li>
             <li><Link to='Solicitar-Prestamo'>Prestar llave</Link></li>
+            <li><Link to={'Usuarios'}>Usuarios</Link></li>
         </ul>
     </div>
   )
