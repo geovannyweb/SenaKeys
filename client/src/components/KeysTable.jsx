@@ -1,5 +1,11 @@
 
+import { useKeys } from "../context/KeysProvider.jsx";
 function KeysTable({ keys }) {
+
+ const {deleteKeys} = useKeys()
+
+
+
   return (
    
    
@@ -7,7 +13,7 @@ function KeysTable({ keys }) {
       <tr>
        <td>{keys.environment}</td>
         <td>
-          <button>Eliminar</button>
+          <button onClick={() => deleteKeys(keys.id)}>Eliminar</button>
           <button>Editar</button>
         </td>
         </tr>

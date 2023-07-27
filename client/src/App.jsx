@@ -7,14 +7,17 @@ import CrearUsuariosPage from "./pages/CrearUsuariosPage";
 import HistorialPage from "./pages/HistorialPage";
 import SolicitarPrestamoPage from "./pages/SolicitarPrestamoPage";
 import HomePage from "./pages/HomePage";
-
 import Navbar from "./components/navbar";
 import UsersPage from "./pages/UsersPage";
 
+import {KeysContextProvider} from "./context/KeysProvider"
+
+
 function App() {
   return (
-    <>
-    <Navbar/>
+    
+     <KeysContextProvider>
+     <Navbar/>
     <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/Llaves" element={<KeysPages/>} />
@@ -26,7 +29,8 @@ function App() {
       <Route path="/Usuarios" element={<UsersPage/>}/>
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
-    </>
+     </KeysContextProvider>
+   
   )
 }
 

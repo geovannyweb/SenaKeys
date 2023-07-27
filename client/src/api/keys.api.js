@@ -5,3 +5,6 @@ await axios.get('http://localhost:4000/keys', keys)
 
 export const createKeysRequest = async (keys) => 
 await axios.post('http://localhost:4000/key', keys)
+
+export const deleteKeysRequest = async (id) => 
+await axios.delete(`http://localhost:4000/key/${id}`, id)

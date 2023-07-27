@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
-import { getKeysRequest } from "../api/keys.api";
+import { useEffect } from "react";
+
 import KeysTable from "../components/KeysTable";
+import { useKeys } from "../context/KeysProvider";
 function KeysPages() {
-  const [keys, setkeys] = useState([]);
+const {keys, loadKeys}= useKeys() 
 
   useEffect(() => {
-    async function loadKeys() {
-      const response = await getKeysRequest();
-      setkeys(response.data);
-    }
     loadKeys();
   }, []);
+
+  function renderMain() {
+    if (keys.length === 0) return <tr><td>Para ver informació  aquí, crea un registro</td></tr>
+      
+    
+    return keys.map((keys) => (
+      <KeysTable keys={keys} key={keys.id} />
+    ))
+  }
+
   return (
     <div>
       <h1>Llaves</h1>
@@ -22,9 +29,7 @@ function KeysPages() {
         </tr>
       </thead>
       <tbody>
-      {keys.map((keys) => (
-        <KeysTable keys={keys} key={keys.id} />
-      ))}
+        {renderMain()}
       </tbody>
       </table>
     </div>

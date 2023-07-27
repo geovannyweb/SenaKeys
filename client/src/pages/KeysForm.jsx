@@ -1,7 +1,10 @@
-import { createKeysRequest } from "../api/keys.api";
 
 import {Form,Formik} from "formik"
+import { useKeys } from "../context/KeysProvider";
+
 function KeysForm() {
+  
+const {createKeys} = useKeys()
   return (
     <div>
      <Formik 
@@ -10,13 +13,8 @@ function KeysForm() {
      }}
      onSubmit={async (values, actions)  => {
         console.log(values);
-         try {
-          const response = await createKeysRequest(values)
-          console.log(response);
-          actions.resetForm();
-         } catch (error) {
-          console.error(error);
-         }
+         createKeys(values)
+        actions.resetForm();
      }}
      >
       {({handleChange, handleSubmit, values, isSubmitting}) => (
