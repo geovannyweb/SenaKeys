@@ -1,6 +1,7 @@
 import {  useContext, useState } from "react";
-import { getKeysRequest, deleteKeysRequest, createKeysRequest } from "../api/keys.api";
+import { getKeysRequest, deleteKeysRequest, createKeysRequest, getKeyRequest, updateKeyRequest } from "../api/keys.api";
 import { KeysContext } from "./KeysContext";
+
 
 
 export const useKeys = () => {
@@ -37,9 +38,26 @@ export const KeysContextProvider = ( { children } ) => {
           console.error(error);
          }
       }
+
+      const getKey = async (id) => {
+        try {
+          const response = await getKeyRequest(id);
+          return response.data;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      const updateKey = async (id, newFields) => {
+        try {
+          const response = await updateKeyRequest(id, newFields);
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
+      }
        
   return ( 
-     <KeysContext.Provider value={{ keys, loadKeys, deleteKeys, createKeys }}>
+     <KeysContext.Provider value={{ keys, loadKeys, deleteKeys, createKeys, getKey, updateKey }}>
     {children}
     </KeysContext.Provider>
     );

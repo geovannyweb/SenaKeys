@@ -13,6 +13,17 @@ function UsersPage() {
     loadUsers();
   }, []);
   
+   function renderMain() {
+    if (users.length === 0) return <tr><td>Para ver informació  aquí, crea un registro</td></tr>
+      return users.map((users) => (
+        <UsersTable users={users} key={users.id}/>
+       ))
+   
+    
+      
+   
+   }
+
     return (
   <div>
     <h1>Usuarios</h1>
@@ -29,9 +40,7 @@ function UsersPage() {
       </tr>
     </thead>
     <tbody>
-     {users.map((users) => (
-    <UsersTable users={users} key={users.id}/>
-   ))}
+     {renderMain()}
    </tbody>
    </table>
   </div>

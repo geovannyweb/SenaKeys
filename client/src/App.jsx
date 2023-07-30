@@ -10,7 +10,8 @@ import HomePage from "./pages/HomePage";
 import Navbar from "./components/navbar";
 import UsersPage from "./pages/UsersPage";
 
-import {KeysContextProvider} from "./context/KeysProvider"
+import {KeysContextProvider} from "./context/KeysProvider";
+
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path="/" element={<HomePage/>}/>
       <Route path="/Llaves" element={<KeysPages/>} />
       <Route path="/Crear-Ambiente" element={<KeysForm/>} />
+      <Route path="/Editar-Ambiente/:id" element={<KeysForm/>} />
       <Route path="/Prestamos" element={<PrestamosPage/>} />
       <Route path="/Crear-Usuarios" element={<CrearUsuariosPage/>} />
       <Route path="/Historial" element={<HistorialPage/>} />
