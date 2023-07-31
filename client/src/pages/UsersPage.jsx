@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react";
-import { getUsersRequest } from "../api/users.api"
+import { useEffect } from "react";
 import UsersTable from "../components/UsersTable";
+import { useKeys } from "../context/KeysProvider";
 
 function UsersPage() {
-    const [users, setusers] = useState([]);
+ const {users, loadUsers}  = useKeys()  
 
   useEffect(() => {
-    async function loadUsers() {
-      const response = await getUsersRequest();
-      setusers(response.data);
-    }
     loadUsers();
   }, []);
   

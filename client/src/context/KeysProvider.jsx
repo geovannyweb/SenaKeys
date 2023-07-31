@@ -1,9 +1,10 @@
 import {  useContext, useState } from "react";
 import { getKeysRequest, deleteKeysRequest, createKeysRequest, getKeyRequest, updateKeyRequest } from "../api/keys.api";
+import { getUsersRequest, deleteUsersRequest, createUsersRequest } from "../api/users.api"
 import { KeysContext } from "./KeysContext";
 
 
-
+// Hook de mi contexto(Llaves y usuarios)
 export const useKeys = () => {
     const context = useContext(KeysContext);
     if(!context){
@@ -11,6 +12,8 @@ export const useKeys = () => {
     }
     return context;
 }
+
+
 
 export const KeysContextProvider = ( { children } ) => {
 
@@ -55,9 +58,35 @@ export const KeysContextProvider = ( { children } ) => {
           console.error(error);
         }
       }
-       
+    
+      const [users, setusers] = useState([]);
+
+      async function loadUsers() {
+        const response = await getUsersRequest();
+        setusers(response.data);
+      }
+
+      const deleteUser = async(id) => {
+        try {
+         const response = await deleteUsersRequest(id);
+         setusers(users.filter(users => users.id !== id))
+        } catch (error) {
+         console.error(error);
+        }
+       }
+      
+       const createUser = async(users) => {
+        try {
+           const response = await createUsersRequest(users)
+            console.log(response);
+          
+         } catch (error) {
+          console.error(error);
+         }
+       }
+
   return ( 
-     <KeysContext.Provider value={{ keys, loadKeys, deleteKeys, createKeys, getKey, updateKey }}>
+     <KeysContext.Provider value={{ keys, loadKeys, deleteKeys, createKeys, getKey, updateKey, users, loadUsers, deleteUser, createUser }}>
     {children}
     </KeysContext.Provider>
     );

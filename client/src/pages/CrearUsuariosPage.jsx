@@ -1,11 +1,9 @@
 import {Form,Formik} from "formik"
-import { createUsersRequest } from "../api/users.api";
-import { KeysContext } from "../context/KeysContext";
-import { useContext } from "react";
+
+ import { useKeys } from "../context/KeysProvider";
+
 function CrearUsuariosPage() {
-  useContext(KeysContext)
-  const {keys} = useContext(KeysContext)
-  console.log(keys);
+   const  {createUser} = useKeys()
   return (
     <div>
      <Formik 
@@ -20,13 +18,8 @@ function CrearUsuariosPage() {
      }}
      onSubmit={ async(values, actions) => {
         console.log(values);
-        try {
-          const response = await createUsersRequest(values)
-          console.log(response);
-          actions.resetForm();
-         } catch (error) {
-          console.error(error);
-         }
+        createUser(values)
+        actions.resetForm();
 
      }}
      >

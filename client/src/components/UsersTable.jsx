@@ -1,15 +1,9 @@
-import { deleteUsersRequest } from "../api/users.api";
 
+import { useKeys } from "../context/KeysProvider";
 function UsersTable({users}) {
-   
-  const handleDelete = async(id) => {
-    try {
-     const response = await deleteUsersRequest(id);
-     console.log(response);
-    } catch (error) {
-     console.error(error);
-    }
-   }
+  const {deleteUser} = useKeys()
+
+  
    
   return (
   
@@ -25,7 +19,7 @@ function UsersTable({users}) {
      <td>{users.role}</td>
      
       <td>
-        <button onClick={() => handleDelete(users.id)}>Eliminar</button>
+        <button onClick={() => deleteUser(users.id)}>Eliminar</button>
         <button>Editar</button>
       </td>
       </tr>
